@@ -41,6 +41,30 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_slovenian_ci;
 
+-- DROP TABLE `comments`;
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int unsigned NOT NULL DEFAULT '0',
+  `article_id` int unsigned NOT NULL DEFAULT '0',
+  `text` text COLLATE utf8mb4_slovenian_ci NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY(`article_id`) REFERENCES `articles`(`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_slovenian_ci;
+
+/*
+INSERT INTO comments (user_id, article_id, `text`) VALUES
+(8, 3, 'baje'),
+(8, 3, 'jebi ga'),
+(10, 3, 'baje ja ja baje'),
+(10, 4, 'ja baje ja'),
+(9, 5, 'čista jeba'),
+(10, 5, 'bajeeeeeee');
+*/
+
+SELECT * FROM comments WHERE article_id = 3;
+
 -- Data exporting was unselected.
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
