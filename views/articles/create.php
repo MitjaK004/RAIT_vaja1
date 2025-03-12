@@ -15,11 +15,6 @@
                 <label for="content" class="form-label">Vsebina novice:</label>
                 <textarea class="form-control" id="text" name="text" rows="5" value="<?php echo isset($_POST["text"]) ? $_POST["text"]: ""; ?>" required></textarea>
             </div>
-
-            <div class="mb-3">
-                <label for="date" class="form-label">Datum objave:</label>
-                <input type="date" class="form-control" id="date" name="date" value="<?php echo isset($_POST["date"]) ? $_POST["date"]: ""; ?>" required>
-            </div>
             <button type="submit" class="btn btn-primary">Objavi</button>
             <label class="text-danger"><?php echo $error; ?></label>
         </form>

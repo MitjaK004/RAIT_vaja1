@@ -4,7 +4,6 @@
         <h4><?php echo $article->title;?></h4>
         <p><b>Povzetek:</b> <?php echo $article->abstract;?></p>
         <p><?php echo $article->text; ?></p>
-        <p>Objavil: <?php echo $article->user->username; ?>, <?php echo date_format(date_create($article->date), 'd. m. Y \ob H:i:s'); ?></p>
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Komentarji</h5>
@@ -35,6 +34,7 @@
             ?>
           </div>
         </div>
+        <p>Objavil: <?php echo $article->user->username; ?>, <?php echo date_format(date_create($article->date), 'd. m. Y \ob H:i:s'); ?></p>
         <?php if($writing_comment == false): ?>
           <a class="btn-default" href="/comments/create?id=<?php echo $article->id;?>"><button>Komentiraj</button></a>
         <?php endif ?>
