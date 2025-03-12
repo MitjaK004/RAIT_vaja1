@@ -22,6 +22,9 @@ class Comment{
 
     public static function create($user_id, $article_id, $text, $date){
         $db = Db::getInstance();
+        $user_id = mysqli_real_escape_string($db, $user_id);
+        $article_id = mysqli_real_escape_string($db, $article_id);
+        $article_id = intval($article_id);
         $text = mysqli_real_escape_string($db, $text);
         $date = mysqli_real_escape_string($db, $date);
         $query = "INSERT INTO comments (user_id, article_id, text, date) VALUES ('$user_id', '$article_id', '$text', '$date');";

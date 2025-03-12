@@ -12,7 +12,7 @@
         update: posodobi novico v bazi
         delete: izbriše novico iz baze
 */
-    require_once __DIR__ . '/../models/comments.php';
+require_once __DIR__ . '/../models/comments.php';
 
 class articles_controller
 {
@@ -36,6 +36,7 @@ class articles_controller
         //drugače najdemo oglas in ga prikažemo
         $article = Article::find($_GET['id']);
         $comments = Comment::get_all_for($_GET['id']);
+        $writing_comment = false;
         require_once('views/articles/show.php');
     }
 
