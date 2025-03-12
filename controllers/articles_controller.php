@@ -67,4 +67,10 @@ class articles_controller
         }
         header("Location: /");
     }
+
+    public function delete(){
+        Article::delete($_GET["id"]);
+
+        header("Location: /articles/my_index");
+    }
 }
