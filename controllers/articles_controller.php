@@ -26,6 +26,12 @@ class articles_controller
         require_once('views/articles/index.php');
     }
 
+    public function my_index(){
+        $articles = Article::all_for($_SESSION['USER_ID']);
+
+        require_once('views/articles/my_index.php');
+    }
+
     public function show()
     {
         //preverimo, če je uporabnik podal informacijo, o oglasu, ki ga želi pogledati
@@ -52,11 +58,12 @@ class articles_controller
     }
 
     public function store(){
-        if(!isset($_POST["title"]) || !isset($_POST["abstract"]) || !isset($_POST["text"]) || !isset($_POST["date"]) || !isset($_SESSION["USER_ID"])){
+        if(!isset($_POST["title"]) || !isset($_POST["abstract"]) || !isset($_POST["text"]) || !isset($_SESSION["USER_ID"])){
             header("Location: /articles/create?error=1");
         }
         else{
-            $article = Article::create($_POST["title"], $_POST["abstract"], $_POST["text"], $_POST["date"], $_SESSION["USER_ID"]);
+            $now = new DateTime();
+            $article = Article::create($_POST["title"], $_POST["abstract"], $_POST["text"], $now->format('Y-m-d H:i:s'), $_SESSION["USER_ID"]);
         }
         header("Location: /");
     }
