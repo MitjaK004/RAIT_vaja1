@@ -68,6 +68,29 @@ class articles_controller
         header("Location: /");
     }
 
+    public function store_modified(){
+        if(!isset($_GET["id"]) || !isset($_POST["title"]) || !isset($_POST["abstract"]) || !isset($_POST["text"]) || !isset($_SESSION["USER_ID"])){
+            header("Location: /articles/create?error=1");
+        }
+        else{
+            $now = new DateTime();
+            Article::delete($_GET["id"]);
+            $article = Article::create($_POST["title"], $_POST["abstract"], $_POST["text"], $now->format('Y-m-d H:i:s'), $_SESSION["USER_ID"]);
+        }
+        header("Location: /articles/my_index");
+    }
+
+    public function edit(){
+        if(!isset($_GET["id"])){
+            header("Location: /articles/create?error=1");
+        }
+        $error = "";
+        $id = $_GET['id'];
+        $article = Article::find($id);
+        $title = $article->title;
+        require_once('views/articles/edit.php');
+    }
+
     public function delete(){
         Article::delete($_GET["id"]);
 
