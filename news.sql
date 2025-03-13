@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `text` text COLLATE utf8mb4_slovenian_ci NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  FOREIGN KEY(`article_id`) REFERENCES `articles`(`id`)
+  FOREIGN KEY(`article_id`) REFERENCES `articles`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_slovenian_ci;
 
 /*
@@ -63,7 +63,7 @@ INSERT INTO comments (user_id, article_id, `text`) VALUES
 (10, 5, 'bajeeeeeee');
 */
 
-SELECT * FROM comments WHERE article_id = 3;
+-- SELECT * FROM comments WHERE article_id = 3;
 
 -- Data exporting was unselected.
 
