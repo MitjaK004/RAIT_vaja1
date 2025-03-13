@@ -107,6 +107,9 @@ class users_controller
             }
         }
 
+        $num_comments = User::getnum_comments($user->id);
+        $num_articles = User::getnum_articles($user->id);
+
         require_once('views/users/profile.php');
     }
 }
