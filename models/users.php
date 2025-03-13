@@ -35,6 +35,34 @@ class User
         return null;
     }
 
+    public static function getnum_articles($id){
+        $db = Db::getInstance();
+        $id = mysqli_real_escape_string($db, $id);
+        $query = "SELECT COUNT(*) FROM articles WHERE user_id = '$id';";
+        $res = $db->query($query);
+        if (!$res) {
+            die("Povpraševanjr ni uspelo: " . $db->error);
+        }
+        if ($num_articles = $res->fetch_assoc()){
+            return (int)$num_articles['COUNT(*)'];
+        }
+        return 0;
+    }
+
+    public static function getnum_comments($id){
+        $db = Db::getInstance();
+        $id = mysqli_real_escape_string($db, $id);
+        $query = "SELECT COUNT(*) FROM comments WHERE user_id = '$id';";
+        $res = $db->query($query);
+        if (!$res) {
+            die("Povpraševanje ni uspelo: " . $db->error);
+        }
+        if($num_comments = $res->fetch_assoc()){
+            return (int)$num_comments['COUNT(*)'];
+        }
+        return 0;
+    }
+
     // Metoda, ki preveri ustreznost podanega uporabniškega imena in gesla
     public static function authenticate($username, $password){
         $db = Db::getInstance();
@@ -79,6 +107,19 @@ class User
         $email = mysqli_real_escape_string($db, $email);
         $id = $this->id;
         $query = "UPDATE users SET username='$username', email='$email' WHERE id=$id LIMIT 1;";
+        if($db->query($query)){
+            return true;
+        }
+        else{
+            return false;
+        } 
+    }
+
+    public function change_password($new_pass){
+        $db = Db::getInstance();
+        $n_pass = password_hash($new_pass, PASSWORD_DEFAULT);
+        $id = $this->id;
+        $query = "UPDATE users SET password='$n_pass' WHERE id=$id LIMIT 1;";
         if($db->query($query)){
             return true;
         }

@@ -20,7 +20,7 @@
             if(isset($_SESSION["USER_ID"])){
                 ?>
                 <li class="nav-item"><a href="/articles/create" class="nav-link">Objavi novico</a></li>
-                <li class="nav-item"><a href="/users/edit" class="nav-link">Uredi profil</a></li>
+                <li class="nav-item"><a href="/users/profile?id=self" class="nav-link">Moj profil</a></li>
                 <li class="nav-item"><a href="/articles/my_index" class="nav-link">Moje novice</a></li>
                 <li class="nav-item"><a href="/auth/logout" class="nav-link">Odjava</a></li>
                 <?php
