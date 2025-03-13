@@ -93,12 +93,17 @@ class users_controller
             header("Location: /pages/error");
         }
         else if($_GET['id'] == "self" && isset($_SESSION["USER_ID"])){
+            $self = true;
             $user = User::find($_SESSION["USER_ID"]);
         }
         else{
+            $self = false;
             $user = User::find($_GET['id']);
             if($user == null){
                 header("Location: /pages/error");
+            }
+            else if(isset($_SESSION['USER_ID']) && $_SESSION['USER_ID'] == $user->id){
+                $self = true;
             }
         }
 
