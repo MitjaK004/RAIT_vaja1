@@ -87,4 +87,21 @@ class users_controller
         }
         die();
     }
+
+    function profile(){
+        if(!isset($_GET['id'])){
+            header("Location: /pages/error");
+        }
+        else if($_GET['id'] == "self" && isset($_SESSION["USER_ID"])){
+            $user = User::find($_SESSION["USER_ID"]);
+        }
+        else{
+            $user = User::find($_GET['id']);
+            if($user == null){
+                header("Location: /pages/error");
+            }
+        }
+
+        require_once('views/users/profile.php');
+    }
 }

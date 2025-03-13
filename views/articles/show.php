@@ -34,7 +34,7 @@
             ?>
           </div>
         </div>
-        <p>Objavil: <?php echo $article->user->username; ?>, <?php echo date_format(date_create($article->date), 'd. m. Y \ob H:i:s'); ?></p>
+        <p>Objavil: <a href="/users/profile?id=<?php echo $article->user->id; ?>"><?php echo $article->user->username; ?></a>, <?php echo date_format(date_create($article->date), 'd. m. Y \ob H:i:s'); ?></p>
         <?php if($writing_comment == false): ?>
           <a class="btn-default" href="/comments/create?id=<?php echo $article->id;?>"><button>Komentiraj</button></a>
         <?php endif ?>

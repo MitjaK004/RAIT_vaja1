@@ -25,7 +25,7 @@ function call($controller, $action)
 // definiramo tudi pravice (ustrezno zmanjšamo nabor akcij pod določenimi pogoji)
 $controllers = array(
   'pages' => ['error'],
-  'users' => ['create', 'store'],
+  'users' => ['create', 'store', 'profile'],
   'auth' => ['login', 'authenticate'],
   'articles' => ['index', 'show', 'store'],
   'comments' => ['store', 'create']
