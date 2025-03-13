@@ -7,11 +7,11 @@
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">Povzetek novice:</label>
-            <textarea class="form-control" id="abstract" name="abstract" rows="5" value="sdfsdufhsduihfsduhf <?php echo $article->abstract; ?>" required></textarea>
+            <textarea class="form-control" id="abstract" name="abstract" rows="5" required><?php echo $article->abstract; ?></textarea>
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">Vsebina novice:</label>
-            <textarea class="form-control" id="text" name="text" rows="5" value="<?php echo $article->text; ?>" required></textarea>
+            <textarea class="form-control" id="text" name="text" rows="5" required><?php echo $article->text;?></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Objavi</button>
         <label class="text-danger"><?php echo $error; ?></label>
