@@ -1,5 +1,5 @@
 <div class="container">
-    <h3 class="mb-3">Registracija</h3>
+    <h3 class="mb-3">Uredi profil</h3>
     <form action="/users/update" method="POST">
         <div class="mb-3">
             <label for="username" class="form-label">Vzdevek</label>
@@ -12,4 +12,7 @@
         <button type="submit" class="btn btn-primary" name="register">Shrani</button>
         <label class="text-danger"><?php echo $error; ?></label>
     </form>
+    <div class="mt-2">
+        <a class="btn-default" href="/users/change_password"><button>Spremeni geslo</button></a>
+    </div>
 </div>

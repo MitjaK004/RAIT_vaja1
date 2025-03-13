@@ -114,4 +114,17 @@ class User
             return false;
         } 
     }
+
+    public function change_password($new_pass){
+        $db = Db::getInstance();
+        $n_pass = password_hash($new_pass, PASSWORD_DEFAULT);
+        $id = $this->id;
+        $query = "UPDATE users SET password='$n_pass' WHERE id=$id LIMIT 1;";
+        if($db->query($query)){
+            return true;
+        }
+        else{
+            return false;
+        } 
+    }
 }

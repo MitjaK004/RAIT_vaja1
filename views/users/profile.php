@@ -12,6 +12,7 @@
         </div>
         <?php if($self == true): ?>
             <a class="btn-default" href="/users/edit"><button>Uredi profil</button></a>
+            <a class="btn-default" href="/users/change_password"><button>Spremeni geslo</button></a>
         <?php endif; ?>
         <a class="btn-default" href="/"><button>Nazaj</button></a>
     </form>

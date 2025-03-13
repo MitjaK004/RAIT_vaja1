@@ -112,4 +112,46 @@ class users_controller
 
         require_once('views/users/profile.php');
     }
+
+    function change_password(){
+        if(!isset($_SESSION['USER_ID'])){
+            header("Location: /pages/error");
+        }
+
+        $error = "";
+        if(isset($_GET['error']) && $_GET['error'] == "trueA"){
+            $error = "Prišlo je do napake pri spremembi gesla, prosimo prepričajte se, da sta napisani gesli enaki.";
+            $auth = true;
+        }
+        else if(isset($_GET['error']) && $_GET['error'] == "trueB"){
+            $error = "Prišlo je do napake pri prijavi.";
+            $auth = false;
+        }
+
+        if($error == "" && isset($_SESSION['auth']) && $_SESSION['auth'] == true && isset($_POST['password']) && isset($_POST['password2']) && $_POST['password'] == $_POST['password2']){
+            unset($_SESSION['auth']);
+            $user = User::find($_SESSION['USER_ID']);
+            $user->change_password($_POST['password']);
+            header("Location: /users/profile?id=self");
+        }
+        else if($error == "" && !isset($_SESSION['auth'])){
+            $auth = false;
+            $user = User::find($_SESSION['USER_ID']);
+            if(isset($_POST['password'])){
+                if(($user_id = User::authenticate($user->username, $_POST["password"])) >= 0 ){
+                    $auth = true;
+                    $_SESSION['auth'] = true;
+                } else{
+                    header("Location: /users/change_password?error=trueB");
+                }
+            }
+        }
+        else{
+            if($error == ""){
+                header("Location: /users/change_password?error=trueA");
+            }
+        }
+        
+        require_once('views/users/change_password.php');
+    }
 }
