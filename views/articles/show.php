@@ -26,6 +26,7 @@
                         <input type="text" class="form-control" id="text" name="text" value="<?php echo isset($_POST["text"]) ? $_POST["text"]: ""; ?>" required>
                       </div>
                       <button type="submit" class="btn btn-primary">Objavi</button>
+                      <button type="button" class="btn btn-secondary" onclick="window.location.href='/articles/show?id=<?php echo $article->id; ?>'">Nazaj</button>
                       <label class="text-danger"><?php echo $error; ?></label>
                     </form>
                   </div>
