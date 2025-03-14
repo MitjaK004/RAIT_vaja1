@@ -35,7 +35,7 @@
           </div>
         </div>
         <p>Objavil: <a href="/users/profile?id=<?php echo $article->user->id; ?>"><?php echo $article->user->username; ?></a>, <?php echo date_format(date_create($article->date), 'd. m. Y \ob H:i:s'); ?></p>
-        <?php if($writing_comment == false): ?>
+        <?php if($writing_comment == false && isset($_SESSION['USER_ID'])): ?>
           <a class="btn-default" href="/comments/create?id=<?php echo $article->id;?>"><button>Komentiraj</button></a>
         <?php endif ?>
         <a class="btn-default" href="/"><button>Nazaj</button></a>

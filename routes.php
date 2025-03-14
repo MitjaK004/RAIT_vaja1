@@ -35,7 +35,7 @@ if(isset($_SESSION["USER_ID"])){
   $controllers['users'] = array_merge($controllers['users'], ['edit', 'update', 'change_password']);
   $controllers['auth'] = array_merge($controllers['auth'], ['logout']);
   $controllers['articles'] = array_merge($controllers['articles'], ['create'], ['my_index'], ['delete'], ['edit'], ['store_modified']); // TODO: 'list', 'store', 'edit', 'update', 'delete'
-  $controllers['comments'] = array_merge($controllers['comments'], ['create']);
+  $controllers['comments'] = array_merge($controllers['comments'], ['create'], ['create_on_index']);
 }
 
 // Preverimo, če zahteva kliče controller in akcijo iz zgornjega seznama

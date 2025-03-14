@@ -21,6 +21,7 @@ class articles_controller
         //s pomočjo statične metode modela, dobimo seznam vseh novic
         //$ads bo na voljo v pogledu za vse oglase index.php
         $articles = Article::all();
+        $writing_comment = -1;
 
         //pogled bo oblikoval seznam vseh oglasov v html kodo
         require_once('views/articles/index.php');
